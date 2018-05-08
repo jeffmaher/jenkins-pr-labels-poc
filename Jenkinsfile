@@ -2,13 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Dump Env') {
+        stage('Run Job') {
             steps {
                 echo sh(script: 'env|sort', returnStdout: true)
+                echo "Payload: ${env.payload}"
             }
-        }
-        stage('Webhook Payload') {
-            echo "Payload: ${env.payload}"
         }
     }
 }
