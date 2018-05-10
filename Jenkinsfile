@@ -2,13 +2,20 @@ enum VersionIncrements { MAJOR, MINOR, PATCH }
 
 labels_str = '["major", "oogabooga", "etc"]'
 
+/**
+* Dev Notes:
+* Requires:
+* - Pipeline Utility Steps Jenkins Plugin
+* - Approval to use java.util.LinkedHashMap
+*/
 def getLabel(){
+        versionIncrement = null
+        
         if(labels_str == null) {
             return
         }
 
-        labels = readJSON text: labels_str
-        versionIncrement = null
+        labels = (readJSON text: labels_str).values()
         for(label in labels){
             switch(label) {
                 case "major":               
