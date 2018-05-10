@@ -9,20 +9,10 @@ def getLabel(){
 
         labels = readJSON text: labels_str
         versionIncrement = null
-        for(label in labels){
-            switch(label) {
-                case "major":
-                    break                    
-                case "minor":
-                    break
-                case "patch":
-                    break
-            }
 
-            if(versionIncrement != null) {
-                return versionIncrement
-            }
-        }
+        if labels.contains("major") VersionIncrements.MAJOR
+        else if labels.contains("minor") VersionIncrements.MINOR
+        else if labels.contains("patch") VersionIncrements.PATCH
 }
 
 node {
