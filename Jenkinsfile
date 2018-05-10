@@ -8,7 +8,7 @@ def getLabel(){
                 return
             }
 
-            labels = readJSON text: labels_str
+            def labels = readJSON text: labels_str
             versionIncrement = null
             for(label in labels){
                 switch(label) {
