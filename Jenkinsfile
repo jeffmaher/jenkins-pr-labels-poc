@@ -1,7 +1,5 @@
 enum VersionIncrements { MAJOR, MINOR, PATCH } 
 
-labels_str = '["major", "oogabooga", "etc"]'
-
 /**
 * Dev Notes:
 * Requires:
@@ -11,7 +9,7 @@ labels_str = '["major", "oogabooga", "etc"]'
     - staticMethod org.codehaus.groovy.transform.ImmutableASTTransformation checkPropNames java.lang.Object
     - java.util.Map
 */
-def getLabel(){
+def getLabel(labels_str){
         versionIncrement = null
         
         if(labels_str == null) {
@@ -42,7 +40,7 @@ node {
     stage('Build') {
         if (env.pull_request_action == "closed") {
             echo 'PR Closed'
-            echo "Label: ${getLabel()}"
+            echo "Label: ${getLabel(env.pull_request_labels)}"
         }
     }
 }
