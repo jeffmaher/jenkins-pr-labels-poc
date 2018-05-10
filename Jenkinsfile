@@ -6,7 +6,10 @@ labels_str = '["major", "oogabooga", "etc"]'
 * Dev Notes:
 * Requires:
 * - Pipeline Utility Steps Jenkins Plugin
-* - Approval to use java.util.LinkedHashMap
+* - Approval to use:
+    - new java.util.LinkedHashMap
+    - staticMethod org.codehaus.groovy.transform.ImmutableASTTransformation checkPropNames java.lang.Object
+    - java.util.Map
 */
 def getLabel(){
         versionIncrement = null
