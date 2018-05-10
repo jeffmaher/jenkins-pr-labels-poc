@@ -14,7 +14,7 @@ def getLabel(){
                 case "major":               
                 case "minor":
                 case "patch":
-                
+                    versionIncrement = VersionIncrements.valueOf(label)
             }
 
             if(versionIncrement != null) {
