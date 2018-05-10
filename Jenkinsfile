@@ -8,8 +8,7 @@ def getLabel(){
                 return
             }
 
-            jsonSlurper = new groovy.json.JsonSlurper()
-            labels = jsonSlurper.parseText(labels_str)
+            labels = readJSON text: labels_str
             versionIncrement = null
             for(label in labels){
                 switch(label) {
