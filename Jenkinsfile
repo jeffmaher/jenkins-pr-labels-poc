@@ -15,7 +15,8 @@ def getLabel(){
             return
         }
 
-        labels = (readJSON text: labels_str).values()
+        labelsMap = readJSON text: labels_str
+        labels = labelsMap.values()
         for(label in labels){
             switch(label) {
                 case "major":               
