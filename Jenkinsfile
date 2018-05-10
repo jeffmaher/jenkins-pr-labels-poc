@@ -21,10 +21,15 @@ def getLabel(){
         labels = readJSON text: labels_str
         for(label in labels){
             switch(label) {
-                case "major":               
+                case "major":
+                    versionIncrement = VersionIncrements.MAJOR               
+                    break
                 case "minor":
+                    versionIncrement = VersionIncrements.MINOR
+                    break
                 case "patch":
-                    versionIncrement = VersionIncrements.valueOf(label)
+                    versionIncrement = VersionIncrements.PATCH
+                    break
             }
 
             if(versionIncrement != null) {
