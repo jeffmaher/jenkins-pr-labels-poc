@@ -30,6 +30,6 @@ def getLabel(){
 
 node {
     stage('Build') {
-        echo 'Label: ${getLabel()}'
+        echo "Label: ${getLabel()}"
     }
 }
