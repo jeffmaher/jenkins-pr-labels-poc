@@ -1,29 +1,41 @@
 import groovy.json.JsonSlurper
 
-JSON_SLURPER = new JsonSlurper()
+jsonSlurper = new JsonSlurper()
+
 enum VersionIncrements { MAJOR, MINOR, PATCH } 
 
-node {
-
-    stage('Detect Label') {
+def getLabel(){
         if(labels == null) {
             return
         }
 
-        labels = JSON_SLURPER.parseText(env.pull_request_labels)
+        labels = jsonSlurper.parseText(env.pull_request_labels)
         versionIncrement = null
         for(label in labels){
             switch(label) {
-                case "major":            
+                case "major":
+                    break                    
                 case "minor":
+                    break
                 case "patch":
-                    versionIncrement = VersionIncrements.valueOf(label)
+                    break
             }
 
             if(versionIncrement != null) {
-                break
+                return versionIncrement
             }
         }
-        echo "Build Type: ${versionIncrement.value}"
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build Version Tagged Image') {
+            steps {
+                versionIncrement = getLabel()
+                echo "Build Type: ${versionIncrement.value}"
+            }
+        }
     }
 }
