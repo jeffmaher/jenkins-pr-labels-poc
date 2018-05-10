@@ -1,13 +1,15 @@
 enum VersionIncrements { MAJOR, MINOR, PATCH } 
 
+labels_str = '["major", "oogabooga", "etc"]'
+
 def getLabel(){
         script {
-            if(env.pull_request_labels == null) {
+            if(labels_str == null) {
                 return
             }
 
             jsonSlurper = new groovy.json.JsonSlurper()
-            labels = jsonSlurper.parseText(env.pull_request_labels)
+            labels = jsonSlurper.parseText(labels_str)
             versionIncrement = null
             for(label in labels){
                 switch(label) {
