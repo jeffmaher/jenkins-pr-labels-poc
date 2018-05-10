@@ -40,6 +40,9 @@ def getLabel(){
 
 node {
     stage('Build') {
-        echo "Label: ${getLabel()}"
+        if (env.pull_request_action == "closed") {
+            echo 'PR Closed'
+            echo "Label: ${getLabel()}"
+        }
     }
 }
