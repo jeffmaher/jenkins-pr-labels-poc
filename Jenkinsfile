@@ -3,26 +3,24 @@ enum VersionIncrements { MAJOR, MINOR, PATCH }
 labels_str = '["major", "oogabooga", "etc"]'
 
 def getLabel(){
-        script {
-            if(labels_str == null) {
-                return
+        if(labels_str == null) {
+            return
+        }
+
+        labels = readJSON text: labels_str
+        versionIncrement = null
+        for(label in labels){
+            switch(label) {
+                case "major":
+                    break                    
+                case "minor":
+                    break
+                case "patch":
+                    break
             }
 
-            def labels = readJSON text: labels_str
-            versionIncrement = null
-            for(label in labels){
-                switch(label) {
-                    case "major":
-                        break                    
-                    case "minor":
-                        break
-                    case "patch":
-                        break
-                }
-
-                if(versionIncrement != null) {
-                    return versionIncrement
-                }
+            if(versionIncrement != null) {
+                return versionIncrement
             }
         }
 }
