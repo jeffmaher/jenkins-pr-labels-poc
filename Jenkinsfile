@@ -9,28 +9,30 @@ pipeline {
 
     stages {
         stage('Build Version Tagged Image') {
-            steps {                           
-                if(labels == null) {
-                    return
-                }
-                
-                labels = jsonSlurper.parseText(env.pull_request_labels)
-                versionIncrement = null
-                for(label in labels){
-                    switch(label) {
-                        case "major":
-                            break                    
-                        case "minor":
-                            break
-                        case "patch":
-                            break
+            steps {
+                step {
+                    if(labels == null) {
+                        return
                     }
-                
-                    if(versionIncrement != null) {
-                        break
+
+                    labels = jsonSlurper.parseText(env.pull_request_labels)
+                    versionIncrement = null
+                    for(label in labels){
+                        switch(label) {
+                            case "major":
+                                break                    
+                            case "minor":
+                                break
+                            case "patch":
+                                break
+                        }
+
+                        if(versionIncrement != null) {
+                            break
+                        }
                     }
+                    echo "Build Type: ${versionIncrement.value}"
                 }
-                echo "Build Type: ${versionIncrement.value}"
             }
         }
     }
